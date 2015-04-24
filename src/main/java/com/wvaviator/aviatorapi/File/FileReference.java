@@ -44,13 +44,13 @@ public class FileReference {
 	 * @return The world directory file
 	 * @throws DirectoryNotFoundException If the specified directory name does not exist
 	 */
-	public static File getWorldDirectory(String worldName) throws NonexistentFileException {
+	public static File getWorldDirectory(String worldName) throws FileNotFoundException {
 		File worldDirectory = new File(serverDirectory.getPath() + "/" + worldName);
 		if (!worldDirectory.exists()) {
 			String message = "Attempted to access world directory at path: " + worldDirectory.getPath() + "\n"
 					+ "This directory does not appear to exist. Please ensure you've specified the correct "
 					+ "world name and that the directory matches the world name.";
-			throw new NonexistentFileException(message);
+			throw new FileNotFoundException(message);
 		}
 		return worldDirectory;
 	}
@@ -111,14 +111,14 @@ public class FileReference {
 	 * @param fileName The name of the file to retrieve
 	 * @param parentDirectory The directory the file is within
 	 * @return The requested file
-	 * @throws NonexistentFileException If the file doesn't exist
+	 * @throws FileNotFoundException If the file doesn't exist
 	 */
-	public static File getFile(String fileName, File parentDirectory) throws NonexistentFileException {
+	public static File getFile(String fileName, File parentDirectory) throws FileNotFoundException {
 		File file = new File(parentDirectory.getPath() + "/" + fileName);
 		if (!file.exists()) {
 			String message = "Attempted to retrieve a file that doesn't exist!\n"
 					+ "Tried to get file from directory: " + file.getPath();
-			throw new NonexistentFileException(message);
+			throw new FileNotFoundException(message);
 		}
 		return file;
 	}
@@ -127,14 +127,14 @@ public class FileReference {
 	 * @param fileName The name of the file to retrieve
 	 * @param parentDirectory The directory the file is within
 	 * @return The requested file
-	 * @throws NonexistentFileException If the file doesn't exist
+	 * @throws FileNotFoundException If the file doesn't exist
 	 */
-	public static File getDirectory(String directoryName, File parentDirectory) throws NonexistentFileException {
+	public static File getDirectory(String directoryName, File parentDirectory) throws FileNotFoundException {
 		File file = new File(parentDirectory.getPath() + "/" + directoryName);
 		if (!file.exists()) {
 			String message = "Attempted to retrieve a directory that doesn't exist!\n"
 					+ "Tried to get file from directory: " + file.getPath();
-			throw new NonexistentFileException(message);
+			throw new FileNotFoundException(message);
 		}
 		return file;
 	}

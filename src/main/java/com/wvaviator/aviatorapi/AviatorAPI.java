@@ -4,9 +4,13 @@ import java.io.File;
 
 import org.apache.logging.log4j.Logger;
 
+import com.wvaviator.aviatorapi.Events.BaseEvents.BlockBreakHandler;
+
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
+import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.EventBus;
 
@@ -24,6 +28,13 @@ public class AviatorAPI {
 		logger = e.getModLog();
 		config = new Configuration(e.getSuggestedConfigurationFile());
 		configurationDirectory = e.getModConfigurationDirectory();
+		
+	}
+	
+	@EventHandler
+	public void onInitialization(FMLInitializationEvent e) {
+		
+		MinecraftForge.EVENT_BUS.register(new BlockBreakHandler());
 		
 	}
 

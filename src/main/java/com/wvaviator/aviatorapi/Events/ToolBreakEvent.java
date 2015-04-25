@@ -9,7 +9,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.event.world.BlockEvent.BreakEvent;
+import net.minecraftforge.fml.common.eventhandler.Cancelable;
 
+/**ToolBreakEvent
+ * @author Alexander
+ *Event fires whenever a player breaks a block with a tool, such as a shovel or axe
+ */
+@Cancelable
 public class ToolBreakEvent extends BreakEvent{
 	
 	private World world;
@@ -26,6 +32,7 @@ public class ToolBreakEvent extends BreakEvent{
 		this.state = state;
 		this.player = player;
 		this.itemStack = itemStack;
+		
 	}
 	
 	public ItemStack getTool() {

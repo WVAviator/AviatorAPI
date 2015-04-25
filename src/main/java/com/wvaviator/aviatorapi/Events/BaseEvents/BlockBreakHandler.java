@@ -24,9 +24,7 @@ public class BlockBreakHandler {
 		ItemStack itemStack = player.getItemInUse();
 		
 		if (itemStack.getItem().isItemTool(itemStack)) {
-			if (AviatorAPI.EVENT_BUS.post(new ToolBreakEvent(world, pos, state, player, itemStack))) {
-				
-			}
+			e.setCanceled(AviatorAPI.EVENT_BUS.post(new ToolBreakEvent(world, pos, state, player, itemStack)));
 		}
 		
 	}
